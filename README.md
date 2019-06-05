@@ -21,6 +21,7 @@ For interface
 
 Other improvements:
 - external movement file can receive directly GPS coordinates;
+- new queues stragety and queue strategy options for dropping; 
 - energy level report also sent partial results of energy consumption.
 
 To do:
