@@ -1,8 +1,8 @@
 # one160-ea
 This is a path to the Opportunistic Network Environment (ONE) 1.6.0 adding energy awareness improvements and other modifications.
 
-The original source code is in https://akeranen.github.io/the-one/
-Under Licence GPLv3
+The original source code is in https://akeranen.github.io/the-one/.
+Under GPLv3 License.
 
 Improvements in the energy model:
 - Energy for reception, base interface energy, sleep energy.
