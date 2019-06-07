@@ -6,7 +6,8 @@ Under GPLv3 License.
 
 Improvements in the energy model:
 - Energy for reception, base interface energy, sleep energy;
-- Imroved energy report.
+- Imroved energy report;
+- Sleep and Wake up functions.
 
 Improvements in the modules:
 - Work with multiple network interfaces;
@@ -17,7 +18,6 @@ For interface
 - ibaseEnergy : energy spent in base operation of the interface (for group too);
 - receiveEnergy: energy spent in reception (for group too);
 - disconnectWhenNotActive : true*/false - if destroy connection on interface when not become inactive (by sleep, activemovement(power off), or no energy);
-- syncIS=vl1,vl2: ex: 5,10: synchronized intermittent sleep of 5 awake of 10 seconds (5 sleeping).
 
 Other improvements:
 - external movement file can receive directly GPS coordinates;
