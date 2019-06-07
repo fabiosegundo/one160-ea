@@ -15,7 +15,7 @@ Improvements in the modules:
 New options in configuration file:
 For interface
 - sleepEnergy : energy spent in sleep mode (for group too);
-- ibaseEnergy : energy spent in base operation of the interface (for group too);
+- iBaseEnergy : energy spent in base operation of the interface (for group too);
 - receiveEnergy: energy spent in reception (for group too);
 - disconnectWhenNotActive : true*/false - if destroy connection on interface when not become inactive (by sleep, activemovement(power off), or no energy);
 
