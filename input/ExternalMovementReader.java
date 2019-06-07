@@ -57,7 +57,7 @@ public class ExternalMovementReader {
 	private double gpsHeight;
 	private boolean normalize;
 	private boolean convGpsCoord;
-    static int precisonFloating = 3; // use 3 decimals after comma for rounding
+    	static int precisonFloating = 3; // use 3 decimals after comma for rounding
 		
 	/**
 	 * Constructor. Creates a new reader that reads the data from a file.
@@ -94,14 +94,8 @@ public class ExternalMovementReader {
 		}
 
 		if (convGpsCoord) {
-		    gpsWidth = geoDistance(minY, minX, minY, maxX);
-		    gpsHeight  = geoDistance(minY, minX, maxY, minX);
-			//l.x = geoDistance(l.latitude, l.longitude, l.latitude, lonMin);
-			//l.y = geoDistance(l.latitude, l.longitude, latMin, l.longitude);
-			//minX = 0;
-			//minY = 0;
-			//maxX = gpsHeight;
-			//maxY = gpsWidth;
+		    	gpsWidth = geoDistance(minY, minX, minY, maxX);
+		    	gpsHeight  = geoDistance(minY, minX, maxY, minX);
 			System.out.println("Geographic area dimensions are: (lat) height (Y) " 
 				+ gpsHeight + "m, (lon) width (X) " + gpsWidth + "m");
 		}
@@ -141,17 +135,8 @@ public class ExternalMovementReader {
 		double xx, yy;
 		
 		if (convGpsCoord) {
-			// put coordinate system to upper left corner with (0,0), output in meters
-			//x = geoDistance(x, y, x, minY);
-			//y = geoDistance(x, y, minX, y);				
-		    //xx = geoDistance(minX, minY, x, minY);
-		    //yy = geoDistance(minX, minY, minX, y);
-		    //xx = geoDistance(minY, minX, minY, x);
-		    //yy = geoDistance(minY, minX, y, minX);
-		    xx = geoDistance(y, x, y, minX);
-		    yy = geoDistance(y, x, minY, x);
-			//l.x = geoDistance(l.latitude, l.longitude, l.latitude, lonMin);
-			//l.y = geoDistance(l.latitude, l.longitude, latMin, l.longitude);
+			xx = geoDistance(y, x, y, minX);
+			yy = geoDistance(y, x, minY, x);
 		} else {
 			xx=x;
 			yy=y;
@@ -167,15 +152,6 @@ public class ExternalMovementReader {
 			    y -= minY;
 			}
 		}
-		
-		//if (convGpsCoord) {
-		//	if (ox<minX || ox>maxX || oy<minY || oy>maxY) System.out.println("Excluded. ");
-		//	System.out.print("Geographic point (Lon="+ox+",Lat="+oy+") converted is: (widht x="+x+"m, height y="+y+"m).");
-		//	System.out.println("");
-		//}
-
-		//System.out.println("Geographic point (Lon="+ox+",Lat="+oy+") converted is: (widht x="+x+"m, height y="+y+"m).");
-
 		
 		lastTimeStamp = time;
 		
@@ -213,17 +189,8 @@ public class ExternalMovementReader {
 			}
 			
 			if (convGpsCoord) {
-				// put coordinate system to upper left corner with (0,0), output in meters
-				//x = geoDistance(x, y, x, minY);
-				//y = geoDistance(x, y, minX, y);				
-				//xx = geoDistance(minX, minY, x, minY);
-				//yy = geoDistance(minX, minY, minX, y);
-				//xx = geoDistance(minY, minX, minY, x);
-				//yy = geoDistance(minY, minX, y, minX);
 				xx = geoDistance(y, x, y, minX);
 				yy = geoDistance(y, x, minY, x);
-				//l.x = geoDistance(l.latitude, l.longitude, l.latitude, lonMin);
-				//l.y = geoDistance(l.latitude, l.longitude, latMin, l.longitude);
 			} else {
 				xx=x;
 				yy=y;
@@ -239,17 +206,6 @@ public class ExternalMovementReader {
 					y -= minY;
 				}
 			}
-			
-			//if (convGpsCoord) {
-			//	if (ox<minX || ox>maxX || oy<minY || oy>maxY) System.out.println("Excluded. ");
-			//	System.out.print("Geographic point (Lon="+ox+",Lat="+oy+") converted is: (widht x="+x+"m, height y="+y+"m).");
-			//	System.out.println("");
-			//}
-
-			//if (gpsCoord && (time>=dia)) {
-			//	System.out.println("Time read: "+time);
-			//	dia=dia+3600;
-			//}
 			
 		}
 		
@@ -329,8 +285,11 @@ public class ExternalMovementReader {
 		return minY;
 	}
 
+	/**
+	 * Returns the distance between two gps fixes in meters
+	 * @return the distance between two gps fixes in meters
+	 */
 	public double geoDistance(double lat1, double lon1, double lat2, double lon2){
-		// return distance between two gps fixes in meters
 		double R = 6371; 
 		double dLat = Math.toRadians(lat2-lat1);
 		double dLon = Math.toRadians(lon2-lon1); 
@@ -343,6 +302,10 @@ public class ExternalMovementReader {
 		return distance;
 	}
 
+	/**
+	 * Returns rounding with bigDecimal
+	 * @return the rounding with bigDecimal
+	 */
 	public static double round(double d, int decimalPlace){
 		BigDecimal bd = new BigDecimal(Double.toString(d));
 		bd = bd.setScale(decimalPlace,BigDecimal.ROUND_HALF_UP);
