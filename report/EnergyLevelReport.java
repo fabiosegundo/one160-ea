@@ -84,10 +84,8 @@ public class EnergyLevelReport extends Report implements UpdateListener {
 	private void createSnapshot(List<DTNHost> hosts) {
 		write ("[" + (int)getSimTime() + "]"); /* simulation time stamp */
 		for (DTNHost h : hosts) {
-			//if (this.reportedNodes != null && 
-			//	!this.reportedNodes.contains(h.getAddress())) {
-					
-			if ((h.getAddress()<0) || (h.getAddress()>392)) {
+			if (this.reportedNodes != null && 
+				!this.reportedNodes.contains(h.getAddress())) {
 				continue; /* node not in the list */
 			}
 
