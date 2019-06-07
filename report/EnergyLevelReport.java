@@ -109,12 +109,6 @@ public class EnergyLevelReport extends Report implements UpdateListener {
 				energyBase = 0.0;
 			}
 
-			//Double value = h.energy.getFullEnergy();
-			//if (h.energy==null) {
-			//if (h.isMovementActive()) {
-			//		throw new SimError("Host " + h + 
-			//				" is not using energy model");
-			//}
 			if (h.energy!=null)
 				write(h.toString() + " " +  format(h.energy.getEnergy()) +" "+ 
 					energyBase +" "+ energyIbase +" "+ energySleep +" "+ energyScan +" "+ 
