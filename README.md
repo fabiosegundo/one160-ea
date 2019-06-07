@@ -9,7 +9,6 @@ Improvements in the energy model:
 
 Improvements in the modules:
 - Work with multiple network interfaces;
-- Added sleep and wakeup functions and a Sync-IS mechanism (Synchronized Intermittent Sleeping).
 
 New options in configuration file:
 For interface
@@ -23,6 +22,7 @@ Other improvements:
 - external movement file can receive directly GPS coordinates;
 - new queues stragety and queue strategy options for dropping; 
 - energy level report also sent partial results of energy consumption.
+- new network interfaces
 
 To do:
 - another way to fast detection of the interface type;
