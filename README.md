@@ -5,7 +5,8 @@ The original source code is in https://akeranen.github.io/the-one/.
 Under GPLv3 License.
 
 Improvements in the energy model:
-- Energy for reception, base interface energy, sleep energy.
+- Energy for reception, base interface energy, sleep energy;
+- Imroved energy report.
 
 Improvements in the modules:
 - Work with multiple network interfaces;
