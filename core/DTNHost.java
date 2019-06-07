@@ -42,75 +42,6 @@ public class DTNHost implements Comparable<DTNHost> {
 	private List<NetworkInterface> net;
 	private ModuleCommunicationBus comBus;
 
-	/*
-	public boolean evaluateSleepByTimeDensity(int ct, int secDay, int timeWindow) {
-		// 8/3 - sleep 5 (3-7), wakeup 3 (0-2)
-		// 10/5 - sleep 5 (5-9), wakeup 5 (0-4)
-		// 15/5 - sleep 10 (5-14), wakeup 5 (0-4)
-		
-		if ((secDay%2)==0) return true; // sleep 1 wakeup 1
-		return false;
-		
-		
-		if (((secDay/5)%2)==0) return true; // sleep 5 wakeup 5
-		return false;
-		
-		//
-		// boolean awake=false, sleep=true;
-		// int total_time = 15;
-        // int awake_time =  5;
-		// int sleep_time = total_time - awake_time;
-		if ((secDay%8)<3) { 
-			return false;  // awake
-		} else {
-			return true;   // sleep
-		}
-	}
-
-	public void evaluateDensity(NetworkInterface ni, double time) {
-		int secsDay = (int)time%86400;   //secundos do dia 
-		int timeWindow = 3600;      // uma hora
-		int posRange = 1000;        // 1000 metros
-		int i = secsDay/timeWindow; // position on the vector
-		ni.ctContactsByTime[i]++;
-		//h.ctContactsByPos[h.getPos()...]
-		//double smallerRange = anotherInterface.getTransmitRange();
-		//double myRange = getTransmitRange();
-		//this.host.getLocation().distance(anotherInterface.getHost().getLocation()) <= smallerRange;		
-		
-		if (evaluateSleepByTimeDensity(ni.ctContactsByTime[i], secsDay, timeWindow)) {
-			ni.sleep();
-		} else {
-			ni.wakeup();
-		}
-	}
-	*/
-
-	/*
-	integilente way to adjust start and end using the mean of the anterior contact
-	how to maintain just those with more constacts? 
-	if is needed a new point or time to agregate contacts, the smalest point could desappear and the new one must to be near another expressive point in number of contacts
-
-	public class TempEntry {
-		public double start;
-		public double end;
-		public int count60s;
-		public int count180s;
-		public int count360s;
-		public double getStart() { return start; }
-		public double getDuration() { return end - start; }
-	}
-	
-	public class PosEntry {
-		public double lon;
-		public double lat;
-		public double distance;
-		public int count200m;
-		public int count400m;
-		public int count600m;
-		public double getDuration() { return end - start };
-	}
-	*/
 
 	static {
 		DTNSim.registerForReset(DTNHost.class.getCanonicalName());
@@ -142,13 +73,6 @@ public class DTNHost implements Comparable<DTNHost> {
 			this.energy = null; /* no energy model */
 		}
 
-		/*if (s.contains(RANGE_COLOR_S)) {
-			//rangeColor = (Color) s.createObject(s.getSetting(RANGE_COLOR_S));	
-			rangeColor = Color.getColor(s.getSetting(RANGE_COLOR_S));	
-		} else {
-			rangeColor = Color.green;
-		}*/
-		
 		if (s.contains(RANGE_COLOR_S)) {
 			String tmp = s.getSetting(RANGE_COLOR_S);
 			if (tmp.equals("black")) {rangeColor = Color.BLACK;}
@@ -252,11 +176,9 @@ public class DTNHost implements Comparable<DTNHost> {
 	 * @param interfaceNo number of the interface to verify
 	 * @return true if this node's radio is active (false if not)
 	 */
-	//public boolean isRadioActive() {
 	public boolean isRadioActiveByIfaceNo(int interfaceNo) {
-		//return this.getInterface(1).isActive();
-	//}
-		/* DONE! TODO: make this work for multiple interfaces of the same type in the same node*/
+
+		// TODO: make this work for multiple interfaces of the same type in the same node
 		if (!isMovementActive()) return false;
 		NetworkInterface ni = null;
 		try {
