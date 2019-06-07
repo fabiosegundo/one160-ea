@@ -133,15 +133,7 @@ public class ExternalPathMovementReader {
 			throw new SettingsError("Couldn't find external movement input " +
 					"file " + inFile);
 		}
-		
-		/*Scanner scanner = null;
-		try {
-			scanner = new Scanner(inFile);
-		} catch (FileNotFoundException e) {
-			throw new SettingsError("Couldn't find external movement input " +
-					"file " + inFile);
-		}*/
-		
+
 		// Parse header
 		String offsets = reader.readLine();
 		if (offsets == null) {
@@ -166,15 +158,9 @@ public class ExternalPathMovementReader {
 
 		if (convGpsCoord) {
 			//this.normalize = true;
-		    gpsWidth = geoDistance(minY, minX, minY, maxX);
-		    gpsHeight  = geoDistance(minY, minX, maxY, minX);
+			gpsWidth = geoDistance(minY, minX, minY, maxX);
+			gpsHeight  = geoDistance(minY, minX, maxY, minX);
 			
-			//l.x = geoDistance(l.latitude, l.longitude, l.latitude, lonMin);
-			//l.y = geoDistance(l.latitude, l.longitude, latMin, l.longitude);
-			//minX = 0;
-			//minY = 0;
-			//maxX = gpsHeight;
-			//maxY = gpsWidth;
 			System.out.println("Geographic area dimensions are: (lat) height (Y) " 
 				+ gpsHeight + "m, (lon) width (X) " + gpsWidth + "m");
 		}
@@ -225,9 +211,6 @@ public class ExternalPathMovementReader {
 					// put coordinate system to upper left corner with (0,0), output in meters
 					x = geoDistance(y, minX, y, x);
 					y = geoDistance(minY, x, y, x);
-					//l.x = geoDistance(l.latitude, l.longitude, l.latitude, lonMin);
-					//l.y = geoDistance(l.latitude, l.longitude, latMin, l.longitude);
-					//System.out.println("Geographic point (Lon="+ox+",Lat="+oy+") converted is: (widht x="+x+"m, height y="+y+"m).");
 				}
 
 				e.x = x;
@@ -240,7 +223,6 @@ public class ExternalPathMovementReader {
 						e.y -= this.minY;
 					}
 				}
-				//System.out.println("Time="+e.time+". Geographic point (Lon="+ox+",Lat="+oy+") converted is: (widht x="+e.x+"m, height y="+e.y+"m).");
 
 				
 				path.add(e);
@@ -291,25 +273,7 @@ public class ExternalPathMovementReader {
 				a.start -= this.minTime;
 				a.end -= this.minTime;
 			}
-			/*
-			// speed up active time simulation
-			ActiveTime b;
-			int i = getIndexOfActiveStart(times,a.end);
-			if (i<0) {
-				i = getIndexOfActiveEnd(times,a.start);
-				if (i>=0) {
-					b = times.get(i); 
-					a.end = b.end;
-					times.set(i,a);
-				} else {
-					times.add(a);			
-				}
-			} else {
-				b = times.get(i); 
-				a.start = b.start;
-				times.set(i,a);
-			}
-			*/
+
 			times.add(a);			
 			
 			line = reader.readLine();
