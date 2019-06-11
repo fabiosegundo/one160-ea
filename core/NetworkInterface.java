@@ -390,32 +390,6 @@ abstract public class NetworkInterface implements ModuleCommunicationListener {
 		return sleep;
 	}
 	
-	/**
-	 * For Synchronized Intermittent Sleeping mode
-	 * @param total time
-	 * @param part of the total time to be awake
-	 */
-	public void syncIS() {
-		if (this.syncIS[1]-this.syncIS[0]>0) {
-			int secsDay = (int)SimClock.getTime()%86400;
-			// 8/3 - sleep 5 (3-7), wakeup 3 (0-2)
-			// 10/5 - sleep 5 (5-9), wakeup 5 (0-4)
-			// 15/5 - sleep 10 (5-14), wakeup 5 (0-4)
-			/*
-			if ((secDay%2)==0) return true; // sleep 1 wakeup 1
-			return false;
-			*/
-			/*
-			if (((secDay/5)%2)==0) return true; // sleep 5 wakeup 5
-			return false;
-			*/
-			if ((secsDay%(this.syncIS[1]-this.syncIS[0]))<this.syncIS[0]) { 
-				this.wakeup();
-			} else {
-				this.sleep(false, false);
-			}
-		}
-	}
 
 	/**
 	 * For creating an empty class of a specific type
