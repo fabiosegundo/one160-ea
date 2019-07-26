@@ -197,7 +197,7 @@ public class EnergyModel { // implements ModuleCommunicationListener {
 		double delta = simTime - this.lastUpdate;
 		
 		if (delta>0) {
-			if (host.isMovementActive()) {
+			if (host.hasEnergy() && host.isMovementActive()) {
 				if (usedBaseEnergy>0) {
 					reduceEnergy(delta * usedBaseEnergy);
 				}
